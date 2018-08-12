@@ -1,0 +1,71 @@
+@define-mixin NewsList {
+  &_allList {
+    display: inline-block;
+    margin-top: 8px;
+    text-decoration: none;
+    &_label {
+      @mixin Caption;
+      color: var(--gray400);
+      margin: 0;
+      padding: 2px 0;
+      &:hover {
+        color: var(--purple700);
+      }
+    }
+  }
+  &_contents {
+    margin: 0;
+    padding: 0;
+  }
+  &_item {
+    list-style: none;
+    position: relative;
+    &_anchor {
+      display: inline-flex;
+      flex-direction: row;
+      padding: 6px 0;
+      text-decoration: none;
+    }
+    &_badge {
+      background: var(--purple700);
+      border-radius: 50%;
+      height: 6px;
+      left: -16px;
+      position: absolute;
+      top: 11px;
+      width: 6px;
+    }
+    &_date {
+      @mixin Caption;
+      margin: 0;
+      width: 116px;
+    }
+    &_label {
+      @mixin Caption;
+      flex: 1;
+      margin: 0;
+    }
+  }
+}
+
+@define-mixin NewsList-phone {
+  &_item {
+    border-top: 0.99px solid var(--gray20);
+    list-style: none;
+    padding: 4px 0 2px 0;
+    &_anchor {
+      flex-direction: column;
+    }
+    &_badge {
+      top: 16px;
+    }
+    &_label {
+      margin: 4px 0;
+    }
+  }
+}
+
+.NewsList {
+  @mixin NewsList;
+  @media(--phone) {@mixin NewsList-phone;}
+}

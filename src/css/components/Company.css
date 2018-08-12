@@ -1,0 +1,18 @@
+.CompanyData {
+  padding: 0;
+  margin: 0;
+  &_item {
+    display: flex;
+    flex-direction: row;
+    padding: 4px 0;
+    &_body {
+      @mixin Caption;
+      margin: 0;
+    }
+    &_label {
+      @mixin Caption;
+      margin: 0;
+      width: 116px;
+    }
+  }
+}

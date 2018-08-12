@@ -1,0 +1,27 @@
+@define-mixin Header {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  padding: 64px 48px 48px 48px;
+  &_nav {
+    display: flex;
+    flex: 1;
+  }
+  &_title {
+    margin: 0;
+    &_thumb {
+      height: 22px;
+    }
+  }
+}
+
+@define-mixin Header-phone {
+  padding: 64px 24px 48px 24px;
+  &_title {margin: 0 auto;}
+}
+
+.Header {
+  align-items: enter;
+  @mixin Header;
+  @media(--phone) {@mixin Header-phone;}
+}

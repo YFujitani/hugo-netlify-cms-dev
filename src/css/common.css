@@ -1,0 +1,20 @@
+body {
+  color: var(--gray800);
+  font-family: var(--common);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: .02rem;
+}
+
+hr {
+  background: var(--gray20);
+  border: 0;
+  border-radius: 2px;
+  max-width: var(--maxWidth);
+  height: 4px;
+}
+
+a:link {color: var(--gray800);}
+a:visited {color: var(--gray800);}
+a:hover {color: var(--purple700);}
+a:active {color: var(--purple700);}

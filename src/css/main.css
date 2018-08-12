@@ -1,0 +1,13 @@
+@import "normalize.css";
+@import "./common";
+@import "./constants";
+@import "./mixins";
+
+@import "./components/Company";
+@import "./components/Footer";
+@import "./components/Header";
+@import "./components/NewsList";
+@import "./components/NewsPost";
+@import "./components/PickUp";
+@import "./components/PublishedList";
+@import "./components/Section";

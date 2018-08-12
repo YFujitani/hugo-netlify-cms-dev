@@ -1,0 +1,32 @@
+.Section {
+  box-sizing: border-box;
+  padding: 20px 48px;
+  max-width: var(--maxWidth);
+  @media(--phone) {
+    padding: 20px 24px;
+  }
+  &_contents {
+    margin: 0;
+    padding: 0;
+  }
+  &_item {
+    list-style: none;
+    &_anchor {
+      display: inline-flex;
+      flex-direction: row;
+      text-decoration: none;
+    }
+    &_label {
+      @mixin Caption;
+      flex: 1;
+      margin: 0;
+      padding: 4px 0;
+    }
+  }
+  &_title {
+    @mixin Body;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    margin: 0 0 10px 0;
+  }
+}

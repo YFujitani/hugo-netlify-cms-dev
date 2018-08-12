@@ -1,0 +1,144 @@
+/**
+ * Button
+ */
+@define-mixin Button {
+  align-items: center;
+  border: 0;
+  border-radius: 8px;
+  color: var(--gray900);
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  margin: 4px 6px;
+  padding: 0 24px;
+  text-decoration: none;
+  &:focus {outline: none;}
+  &:hover {opacity: 0.8;}
+  &:active {opacity: 0.9;}
+}
+
+/**
+ * Clearfix
+ * Support browser IE8+
+ */
+@define-mixin Clearfix {
+  &:after {
+    clear: both;
+    content: '';
+    display: block;
+  }
+}
+
+/**
+ * Typography - Body
+ */
+@define-mixin Body {
+  font-size: 0.93rem;
+  font-weight: 200;
+  line-height: 1.7em;
+}
+
+/**
+ * Typography - Caption
+ */
+@define-mixin Caption {
+  font-size: 0.8125rem;
+  font-weight: 200;
+  line-height: 1.5em;
+}
+
+/**
+ * Typography - Display
+ */
+@define-mixin Display {
+  color: var(--gray900);
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.4em;
+  @media(--phone) {
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+  @media(--phoneSmall) {
+    font-size: 2.2rem;
+    letter-spacing: 0;
+  }
+}
+
+/**
+ * Typography - Display2
+ */
+@define-mixin Display2 {
+  color: var(--gray900);
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 1.4em;
+  @media(--phone) {
+    font-size: 3.2rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+  @media(--phoneSmall) {
+    font-size: 2.8rem;
+    letter-spacing: 0;
+  }
+}
+
+/**
+ * Typography - Headline
+ */
+@define-mixin Headline {
+  color: var(--gray900);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.4em;
+  @media(--phone) {
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: -0.04em;
+  }
+  @media(--phoneSmall) {
+    font-size: 1.8rem;
+    letter-spacing: -0.04em;
+  }
+}
+
+/**
+ * Typography - Subheading
+ */
+@define-mixin Subheading {
+  font-size: 1.1rem;
+  font-weight: 200;
+  line-height: 1.7em;
+}
+
+/**
+ * Typography - Title
+ */
+@define-mixin Title {
+  color: var(--gray900);
+  font-size: 1.5rem;
+  font-weight: 200;
+  line-height: 1.7em;
+}
+
+/**
+ * FontAwesome
+ *
+ * postcss-font-awesomeはmixin内で展開できないので
+ * contentとして渡す必要がある
+ *
+ * @content font-awesome
+ */
+@define-mixin FontAwesome {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  &:before {
+    @mixin-content;
+  }
+}

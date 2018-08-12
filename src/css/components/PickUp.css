@@ -1,0 +1,22 @@
+.PickUp {
+  box-sizing: border-box;
+  bottom: 0;
+  overflow: hidden;
+  padding: 8px;
+  position: fixed;
+  right: 0;
+  @media(--phone) {
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+  &_img {
+    border-radius: 8px;
+    height: 96px;
+    width: 320px;
+    @media(--phone) {
+      height: auto;
+      width: 100%;
+    }
+  }
+}

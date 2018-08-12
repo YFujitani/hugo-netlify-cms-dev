@@ -1,0 +1,13 @@
+.Footer {
+  box-sizing: border-box;
+  padding: 48px;
+  width: 100vw;
+  @media(--phone) {
+    padding: 48px 24px;
+  }
+  &_copyright {
+    @mixin Caption;
+    color: var(--gray300);
+    font-weight: 400;
+  }
+}
