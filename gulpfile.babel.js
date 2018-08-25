@@ -5,10 +5,8 @@ import gPluginError from "plugin-error";
 import gLog from "gulplog";
 import postcss from "gulp-postcss";
 import cssImport from "postcss-import";
-// import cssNext from "postcss-cssnext"; deprecated (see https://moox.io/blog/deprecating-cssnext/)
 // fujitani added
-// import cssNext from "postcss-cssnext";
-import cssNested from "postcss-nested";
+import cssNested from "postcss-nested"; // "postcss-cssnext"; deprecated (see https://moox.io/blog/deprecating-cssnext/)
 import cssPresetEnv from "postcss-preset-env";
 import cssMixins from "postcss-mixins";
 import cssDiscardComments from "postcss-discard-comments";
@@ -47,10 +45,13 @@ gulp.task("css", () => (
       cssPresetEnv({
         stage: 3, // default stage 2  (see https://www.npmjs.com/package/postcss-preset-env#stage)
         features: {
-          "nesting-rules": true
+          "nesting-rules": true,
+          "custom-properties": {
+            preserve: false
+          },
         },
-        insertBefore: {
-          "all-property": cssNested
+        insertAfter: {
+          "all-property": cssNested,
         }
       }),
       cssConditionals(),
