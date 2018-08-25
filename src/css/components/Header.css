@@ -24,4 +24,11 @@
   align-items: enter;
   @mixin Header;
   @media(--phone) {@mixin Header-phone;}
+  &_hogeuga {
+    display: none;
+  }
+  &_fuga {
+    display: none;
+  }
+
 }
