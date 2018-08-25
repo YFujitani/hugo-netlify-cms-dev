@@ -1,23 +1,36 @@
 import gulp from "gulp";
 import cp from "child_process";
-import gutil from "gulp-util";
+// import gutil from "gulp-util";
+import gPluginError from "plugin-error";
+import gLog from "gulplog";
 import postcss from "gulp-postcss";
 import cssImport from "postcss-import";
-import cssnext from "postcss-cssnext";
+// import cssNext from "postcss-cssnext"; deprecated (see https://moox.io/blog/deprecating-cssnext/)
+// fujitani added
+// import cssNext from "postcss-cssnext";
+import cssNested from "postcss-nested";
+import cssPresetEnv from "postcss-preset-env";
+import cssMixins from "postcss-mixins";
+import cssDiscardComments from "postcss-discard-comments";
+import cssConditionals from "postcss-conditionals";
+import cssFontAwesome from "postcss-font-awesome";
+import cssReporter from "postcss-reporter";
+import cssBrowserReporter from "postcss-browser-reporter";
+// fujitani added
 import BrowserSync from "browser-sync";
 import webpack from "webpack";
 import webpackConfig from "./webpack.conf";
 import svgstore from "gulp-svgstore";
 import svgmin from "gulp-svgmin";
 import inject from "gulp-inject";
-import cssnano from "cssnano";
+// import cssnano from "cssnano";
 
 const browserSync = BrowserSync.create();
 const hugoBin = `./bin/hugo.${process.platform === "win32" ? "exe" : process.platform}`;
 const defaultArgs = ["-d", "../dist", "-s", "site"];
 
 if (process.env.DEBUG) {
-  defaultArgs.unshift("--debug")
+  defaultArgs.unshift("--debug");
 }
 
 gulp.task("hugo", (cb) => buildSite(cb));
@@ -28,25 +41,42 @@ gulp.task("build-preview", ["css", "js", "cms-assets", "hugo-preview"]);
 gulp.task("css", () => (
   gulp.src("./src/css/*.css")
     .pipe(postcss([
+      // TODO pipeの順序の確認
       cssImport({from: "./src/css/main.css"}),
-      cssnext(),
-      cssnano(),
+      cssMixins(),
+      cssPresetEnv({
+        stage: 3, // default stage 2  (see https://www.npmjs.com/package/postcss-preset-env#stage)
+        features: {
+          "nesting-rules": true
+        },
+        insertBefore: {
+          "all-property": cssNested
+        }
+      }),
+      cssConditionals(),
+      cssDiscardComments(),
+      cssFontAwesome(),
+      // ビルドが安定するまでコメントアウト
+      // cssnano(),
+      cssReporter(),
+      cssBrowserReporter(),
     ]))
     .pipe(gulp.dest("./dist/css"))
+    .on("error", (err) => gLog.error(err))
     .pipe(browserSync.stream())
 ));
 
 gulp.task("cms-assets", () => (
   gulp.src("./node_modules/netlify-cms/dist/*.{woff,eot,woff2,ttf,svg,png}")
     .pipe(gulp.dest("./dist/css"))
-))
+));
 
 gulp.task("js", (cb) => {
   const myConfig = Object.assign({}, webpackConfig);
 
   webpack(myConfig, (err, stats) => {
-    if (err) throw new gutil.PluginError("webpack", err);
-    gutil.log("[webpack]", stats.toString({
+    if (err) throw new gPluginError("webpack", err);
+    gLog.info("[webpack]", stats.toString({
       colors: true,
       progress: true
     }));
