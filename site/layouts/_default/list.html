@@ -1,16 +1,30 @@
 {{ define "main" }}
 
-{{ partial "jumbotron" (dict "imageUrl" "/img/blog-index.jpg" "title" "Latest stories") }}
-
-<div class="mw7 center">
-  <ul class="flex-ns flex-wrap mhn1-ns pa3">
-      {{ range (.Paginator 4).Pages.ByPublishDate }}
-          <div class="w-50-ns ph1-ns flex">
-            {{ .Render "li"}}
-          </div>
-      {{ end }}
+<div class="NewsList Section">
+  <h3 class="Section_title">
+    お知らせ
+  </h3>
+  <ul class="NewsList_contents">
+    {{ range (.Paginator 3).Pages.ByPublishDate }}
+      <li class="NewsList_item" key={index}>
+        <!-- TODO 投稿日が30日以内か判定してnewバッジを表示 -->
+        <!--
+        <div class="NewsList_item_badge" />
+        -->
+        <a class="NewsList_item_anchor" href="{{ .Permalink }}">
+          <p class="NewsList_item_date">
+            {{ .Date.Format "Mon, Jan 2, 2006" }}
+          </p>
+          <p class="NewsList_item_label">
+            {{ .Title }}
+          </p>
+        </a>
+      </li>
+    {{ end }}
   </ul>
-  {{ partial "pagination" . }}
+  <a class="NewsList_allList" href="#">
+    <p class="NewsList_allList_label">→ 一覧</p>
+  </a>
 </div>
 
 {{end}}

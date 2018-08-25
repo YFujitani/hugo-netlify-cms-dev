@@ -1,3 +1,6 @@
+:root {
+  --maxWidth: 960px;
+}
 .Section {
   box-sizing: border-box;
   padding: 20px 48px;

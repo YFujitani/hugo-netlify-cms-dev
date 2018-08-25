@@ -1,9 +1,15 @@
-<!doctype html>
-<html lang="en">
-  {{ partial "head" . }}
-  <body class="sans-serif">
-    {{ partial "nav" . }}
-    {{ block "main" . }}{{ end }} 
-    {{ partial "footer" . }} 
-  </body>
+<!DOCTYPE html>
+<html>
+{{ partial "head" . }}
+
+<body>
+  {{ partial "header" . }}
+  <div id="content">
+    <div class="Index">
+      {{ block "main" . }}{{ end }}
+    </div>
+  </div>
+  {{ partial "footer" . }}
+</body>
+
 </html>

@@ -1,0 +1,24 @@
+<div className="NewsList Section">
+  <h3 className="Section_title">
+    お知らせ
+  </h3>
+  <ul className="NewsList_contents">
+    {{ range (.Paginator 3).Pages.ByPublishDate }}
+      <li className="NewsList_item">
+        <!-- TODO Newバッジの出し分け -->
+        <div className="NewsList_item_badge" />
+        <a href="{{ .Permalink }}" class="NewsList_item_anchor">
+          <p className="NewsList_item_date">
+            {{ .Date.Format "Mon, Jan 2, 2006" }}
+          </p>
+          <p className="NewsList_item_label">
+            {{ .Title }}
+          </p>
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+  <Link className="NewsList_allList" to={prefixLink( '/news/')}>
+    <p className="NewsList_allList_label">→ 一覧</p>
+  </Link>
+</div>
