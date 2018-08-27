@@ -1,24 +1,26 @@
-<div className="NewsList Section">
-  <h3 className="Section_title">
-    お知らせ
+<div class="NewsList Section">
+  <h3 class="Section_title">
+    お知らせ newslist
   </h3>
-  <ul className="NewsList_contents">
-    {{ range (.Paginator 3).Pages.ByPublishDate }}
-      <li className="NewsList_item">
-        <!-- TODO Newバッジの出し分け -->
-        <div className="NewsList_item_badge" />
-        <a href="{{ .Permalink }}" class="NewsList_item_anchor">
-          <p className="NewsList_item_date">
-            {{ .Date.Format "Mon, Jan 2, 2006" }}
-          </p>
-          <p className="NewsList_item_label">
-            {{ .Title }}
-          </p>
-        </a>
-      </li>
+  <ul class="NewsList_contents">
+    {{ range (.Paginator 3).Pages.ByPublishDate.Reverse }}
+    <li class="NewsList_item" key={index}>
+      <!-- TODO 投稿日が30日以内か判定してnewバッジを表示 hugoのロジックjavascript側で実装する必要あり -->
+      <!--
+        <div class="NewsList_item_badge" />
+        -->
+      <a class="NewsList_item_anchor" href="{{ .Permalink }}">
+        <p class="NewsList_item_date">
+          {{ .Date.Format "2006年1月2日" }}
+        </p>
+        <p class="NewsList_item_label">
+          {{ .Title }}
+        </p>
+      </a>
+    </li>
     {{ end }}
   </ul>
-  <Link className="NewsList_allList" to={prefixLink( '/news/')}>
-    <p className="NewsList_allList_label">→ 一覧</p>
-  </Link>
+  <a class="NewsList_allList" href="news">
+    <p class="NewsList_allList_label">→ 一覧</p>
+  </a>
 </div>

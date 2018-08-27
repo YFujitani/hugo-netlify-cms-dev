@@ -1,30 +1,8 @@
 {{ define "main" }}
 
-<div class="NewsList Section">
-  <h3 class="Section_title">
-    お知らせ
-  </h3>
-  <ul class="NewsList_contents">
-    {{ range (.Paginator 3).Pages.ByPublishDate.Reverse }}
-      <li class="NewsList_item" key={index}>
-        <!-- TODO 投稿日が30日以内か判定してnewバッジを表示 hugoのロジックjavascript側で実装する必要あり -->
-        <!--
-        <div class="NewsList_item_badge" />
-        -->
-        <a class="NewsList_item_anchor" href="{{ .Permalink }}">
-          <p class="NewsList_item_date">
-            {{ .Date.Format " 2006年1月2日" }}
-          </p>
-          <p class="NewsList_item_label">
-            {{ .Title }}
-          </p>
-        </a>
-      </li>
-    {{ end }}
-  </ul>
-  <a class="NewsList_allList" href="#">
-    <p class="NewsList_allList_label">→ 一覧</p>
-  </a>
-</div>
+{{ partial "newslist" . }}
+
+{{ partial "publishedlist" . }}
 
 {{end}}
+

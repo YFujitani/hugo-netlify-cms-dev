@@ -1,0 +1,26 @@
+<div class="PublishedList Section">
+  <h3 class="Section_title">
+    メディア掲載
+  </h3>
+  <ul class="PublishedList_contents">
+    {{ range .Site.Data.published.list }}
+      <li class="PublishedList_item">
+        <!-- TODO 投稿日が30日以内か判定してnewバッジを表示 hugoのロジックjavascript側で実装する必要あり -->
+        <!--
+        <div class="PublishedList_item_badge" />
+        -->
+        <a class="PublishedList_item_anchor" href="{{ .url }}">
+          <p class="PublishedList_item_date">
+            {{ .date }}
+          </p>
+          <p class="PublishedList_item_label">
+             {{ .title }}
+          </p>
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+  <a class="PublishedList_allList" to="published">
+    <p class="PublishedList_allList_label">→ 一覧</p>
+  </a>
+</div>
