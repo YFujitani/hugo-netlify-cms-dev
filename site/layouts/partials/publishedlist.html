@@ -11,7 +11,7 @@
         -->
         <a class="PublishedList_item_anchor" href="{{ .url }}">
           <p class="PublishedList_item_date">
-            {{ .date }}
+            {{ dateFormat "2006年1月2日" .date }}
           </p>
           <p class="PublishedList_item_label">
              {{ .title }}
